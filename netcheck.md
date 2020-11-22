@@ -7,19 +7,19 @@ date: "2020-11-23"
 ---
 
 
-Our home internet connection started to seem a bit shakey recently, and with the COVID-19 pandemic sweeping Australia, I was stuck inside needing internet and not getting the results from my NBN connectivity that I would have preferred. Enter the [Raspberry Pi](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). 
+Our home internet connection started to seem a bit shakey recently, and with the COVID-19 pandemic sweeping Australia, I was stuck inside needing internet and not getting the results from my NBN connection that I would have preferred. Enter the [Raspberry Pi](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/). 
 
-A Raspberry Pi, for those that may not know, is just a tiny, credit-card sized computer. I purchased one, and a bit of kit to go with it, and got on my way. The advantage of using such a device was that I could leave it running a script in the background that could collect data for me, allowing me to come and go as I pleased, and viewing the data later. 
+A Raspberry Pi, if you don't know, is a small, credit-card sized computer. It doesn't have any "bells or whistles" like say, a screen or keyboard, but works for its intended purpose. I purchased one, and a bit of kit to go with it, and got on my way. The advantage of using such a device was that I could leave it running a script in the background that could collect data for me, allowing me to come and go as I pleased, and viewing the data later. I was going to leverage this idea to keep track of what was going on with my internet speeds.
 
 ## Accessing the Pi
-After initially setting up the Raspberry Pi, it is possible to access it via ```ssh``` using my laptop. To do this, I first had to find it's initial IP address, which I think gave the alias of **pi@raspberrypi**. Using the Windows command line, I can ssh into the pi as follows:
+After initially setting up the Raspberry Pi, it is possible to access it via ```ssh``` using my laptop. To do this, I first had to find it's initial IP address, which I think I gave the alias of **pi@raspberrypi**. Using the Windows command line, I can ssh into the pi as follows:
 ```
 ssh pi@raspberrypi
 ```
-I can then access and edit files on the raspberry pi from the comfort of my laptop. 
+Pretty simple. I can then access and edit files on the raspberry pi from the comfort of my laptop command line. You can also use something like [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) to remotely view the raspberry pi on your laptop screen.  
 
 ## Checking internet connectivity
-The second part of my problem was how to test how well my internet transfer speeds are performing. I perhaps could have put some effort into learning how to do this, but a tool already exists. That tool is [speedtest-cli](https://www.speedtest.net/apps/cli), brought to you buy the (assumingly) good people at [speedtest.net](https://www.speedtest.net/). It is a command-line tool that works in a similar way to the Speedtest website. It spits out some stats and tells you how quick (or slow) your internet transfer speeds are. 
+The second part of my problem was how to test how well my internet transfer speeds were performing. I perhaps could have put some effort into learning how to do this programmatically, but a tool already exists. That tool is [speedtest-cli](https://www.speedtest.net/apps/cli), brought to you buy the (assumingly) good people at [speedtest.net](https://www.speedtest.net/). It is a command-line tool that works in a similar way to the Speedtest website. It spits out some stats and info and tells you how quick (or slow) your internet transfer speeds are. 
 
 ## Combining the pi, pyhton and the speedtest-cli
 Now I was getting somewhere. It was time to write a python script that could run the speedtest-cli on the raspberry pi and write the information to a data file (in this case CSV). It took me a few goes at getting this to work, but it ended up something like the following:
@@ -162,14 +162,14 @@ if __name__ == "__main__":
 
 ```
 
-All the above script is basically doing is making sure there is an internet connection, then running speedtest-cli and copying information from the shell output. Then I have to trawl through the output and save the correct little chunks of information I want into some variables I have created. Then I write those little chunks of information (like download speed, upload speed, distance to sever etc.) to a CSV file for later scrutiny. 
+All the above script is basically doing is making sure there is an internet connection, then running speedtest-cli and copying information from the shell output. Then it trawls through the output and saves the information I want into some variables. Then it writes those variables (like download speed, upload speed, distance to sever etc.) to a CSV file for later scrutiny. 
 
 ## Running the script automatically
-To run the script in the background automatically, I needed to create a **cronjob**, which is an automated task in a UNIX environment (the operating system used by the raspberry pi). From the command line I can run:
+To run the script in the background automatically, I needed to create a **cronjob**, which is an automated task in a UNIX environment (the operating system used by the raspberry pi). This is also called a *scheduled task* in a Windows environment. From the command line I can run:
 ```bash
 crontab -e
 ```
-This allows me to edit the crontable(?). Then it is just a matter of adding the following:
+This allows me to edit the crontable. Then it is just a matter of adding the following:
 
 ```bash
 8,38 * * * * /usr/bin/python3 /home/pi/Python/netcheck/netcheck.py > /home/pi/logs/cronlog.log 2>&1
@@ -179,16 +179,19 @@ This tells the pi to:
 - Use the program python3 (the python installation) from the specified path
 - Run the script at the specified path (netcheck.py)
 - Save a log to the specified file and path (cronlog.log)
+- I can't remember what the "2>&1" is for...
 
-So every half hour the raspberry runs the ```netcheck.py``` script. Laughing. 
+So every half hour the raspberry runs the ```netcheck.py``` script, saves the information to a ```.csv``` file and also logs the information incase I want to check it as a more convenient text output. Laughing. 
 
 ## Visualising the data with Tableau Public
+To get the data from the pi (a simple machine that I wouldn't bother trying to run Tableau on) to my laptop, I needed a way to transfer the ```.csv``` file relatively easy. I went with [FileZilla](https://filezilla-project.org/) - the free FTP solution. If you know the IP address of your pi and you are on the same network, you can use FileZilla to transfer files between interfaces (given the files have the appropriate permissions enabled). Sometimes my pi will change it's address on the network (I think this can be fixed to be static), so to find it, I can run ```ifconfig``` command from the unix shell. Once you have the address, FileZilla connects to the pi via SFTP and you are free to transfer away. I transfered the *netcheck.csv* data to my laptop, where I could open it in any data visualisation program I might like. I wanted to sharpen up my Tableau skills so I decided to give it a whirl. 
+
 I previously had a copy of Tableau, but it expired, so I tried my luck with Tableau Public. 
 I came up with the following, which you can access and play with [here](https://public.tableau.com/profile/rob8334#!/vizhome/netcheck2_1/netcheck2_1).
 
 ![tableau_screenshot.jpg]({{site.baseurl}}/assets/img/tableau_screenshot.jpg)
 
-The people at my ISP told me the minimum acceptable download speed was 9 Mbps. You can see from the Tableau dashboard that I am only getting speeds beyond this about 50% of the time, given **1,811** observations, or approximately 37 days. 
+The people at my ISP told me the minimum acceptable download speed was 9 Mbps (likely wherever you are reading from, you are probably laughing right now, I am not). You can see from the Tableau dashboard that I am only getting speeds beyond this about 50% of the time, given **1,811** observations, or approximately 37 days. 
 
 NOT GREAT. 
 
