@@ -1,6 +1,6 @@
 ---
 title: Netcheck
-subtitle: Using a raspberry pi, python and speetet-cli to test internet transfer speeds
+subtitle: Using a raspberry pi, python and speedtest-cli to test internet transfer speeds
 cover-img: /assets/img/raspberrypi.jpg
 author: Robert Ely
 date: "2020-11-23"
