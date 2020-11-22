@@ -183,7 +183,7 @@ So every half hour the raspberry runs the ```netcheck.py``` script. Laughing.
 I previously had a copy of Tableau, but it expired, so I tried my luck with Tableau Public. 
 I came up with the following, which you can access and play with [here](https://public.tableau.com/profile/rob8334#!/vizhome/netcheck2_1/netcheck2_1).
 
-![tableau_screenshot.jpg]({{site.baseurl}}/img/tableau_screenshot.jpg)
+![tableau_screenshot.jpg]({{site.baseurl}}/assets/img/tableau_screenshot.jpg)
 
 The people at my ISP told me the minimum acceptable download speed was 9 Mbps. You can see from the Tableau dashboard that I am only getting speeds beyond this about 50% of the time, given **1,811** observations, or approximately 37 days. 
 
