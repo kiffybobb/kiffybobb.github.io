@@ -19,7 +19,7 @@ ssh pi@raspberrypi
 I can then access and edit files on the raspberry pi from the comfort of my laptop. 
 
 ## Checking internet connectivity
-The second part of my problem was how to test how well my internet transfer speeds are performing. I perhaps could have put some effort into learning how to do this, but a tool already exists. That tool is [https://www.speedtest.net/apps/cli](speedtest-cli), brought to you buy the (assumingly) good people at [https://www.speedtest.net/](speedtest.net). It is a command-line tool that works in a similar way to the Speedtest website. It spits out some stats and tells you how quick (or slow) your internet transfer speeds are. 
+The second part of my problem was how to test how well my internet transfer speeds are performing. I perhaps could have put some effort into learning how to do this, but a tool already exists. That tool is [speedtest-cli](https://www.speedtest.net/apps/cli), brought to you buy the (assumingly) good people at [speedtest.net](https://www.speedtest.net/). It is a command-line tool that works in a similar way to the Speedtest website. It spits out some stats and tells you how quick (or slow) your internet transfer speeds are. 
 
 ## Combining the pi, pyhton and the speedtest-cli
 Now I was getting somewhere. It was time to write a python script that could run the speedtest-cli on the raspberry pi and write the information to a data file (in this case CSV). It took me a few goes at getting this to work, but it ended up something like the following:
