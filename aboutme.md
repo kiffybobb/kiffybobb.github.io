@@ -1,15 +1,12 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: About Robert Ely
+subtitle: Bachelor Biomedical Science (Hons), Master Data Science (student)
 ---
 
-My name is Inigo Montoya. I have the following qualities:
 
-- I rock a great mustache
-- I'm extremely loyal to my family
-
-What else do you need?
+<img src="https://raw.githubusercontent.com/kiffybobb/kiffybobb.github.io/master/assets/img/meface.png" align="left">
+Robert is passionate about science, scientific investigation and data. He holds a Bachelor of Biomedical Science (Hons) from La Trobe University and is currently undertaking a Master of Data Science at James Cook University. Robert has previously worked as a research assistant at La Trobe University, assisting in screening for novel anti-cancer compounds using the model organism *Drosophila melanogaster*.
 
 ### My story
 
