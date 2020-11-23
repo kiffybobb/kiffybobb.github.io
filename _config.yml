@@ -19,6 +19,8 @@ navbar-links:
     - Netcheck: "netcheck"
     - Other:
   About Me: "aboutme"
+  Github: "https://github.com/kiffybobb"
+  Contact: "contact"
 
 
 # --- Logo --- #
