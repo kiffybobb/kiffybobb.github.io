@@ -18,7 +18,7 @@ Please use the following form if you would like to get in contact with me!
   
   <div>
     <label for="message">Message:</label>
-    <textarea id="message" name="message" placeholder="message" style="height:200px">
+    <input type="text" name="message" placeholder="Your message..." style="height:200px">
   </div>
   
   <button type="submit">Send</button>
