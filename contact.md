@@ -9,6 +9,7 @@ Please use the following form if you would like to get in contact with me! (Note
   <div>
     <label for="name">Name:</label>
     <input type="text" name="name" placeholder="Enter your name...">
+    <button type="submit">Send</button>
   </div>
   
   <div>
@@ -16,14 +17,8 @@ Please use the following form if you would like to get in contact with me! (Note
     <input type="email" name="email" placeholder="Enter your email...">
   </div>
   
-  <div>
-    <label for="message">Message:</label>
-    <input type="text" name="message" placeholder="Your message..." style="height:200px">
-  </div>
-  
-  <button type="submit">Send</button>
-
 </form>
 
-<textarea name="message" form="contact-form">Enter your message...</textarea>
+Message: <br>
+<textarea name="message2" form="contact-form" cols=25 wrap="soft">Enter your message...</textarea>
         
