@@ -15,6 +15,7 @@ author: Robert Ely
 # --- List of links in the navigation bar --- #
 
 navbar-links:
+  Blog: "https://kiffybobb.github.io"
   Projects:
     - Netcheck: "netcheck"
     - Other:
