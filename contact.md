@@ -3,7 +3,7 @@ title: Contact
 layout: page
 ---
 
-Please use the following form if you would like to get in contact with me! (Note: pretty buggy!)
+Please use the following form if you would like to get in contact with me!
 
 <form action="https://getform.io/f/c77b38b4-4e03-43c6-b90e-2d3187db2f94" method="POST" id="contact-form">
   <div>
