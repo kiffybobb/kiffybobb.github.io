@@ -20,7 +20,7 @@ navbar-links:
     - Netcheck: "netcheck"
     - Other:
   About Me: "aboutme"
-  Github: "https://github.com/kiffybobb"
+  Github: "https://github.com/kiffybobb"{:target="_blank"}
   Contact: "contact"
 
 
