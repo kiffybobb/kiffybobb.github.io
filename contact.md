@@ -5,7 +5,7 @@ layout: page
 
 Please use the following form if you would like to get in contact with me! (Note: pretty buggy!)
 
-<form action="https://getform.io/f/c77b38b4-4e03-43c6-b90e-2d3187db2f94" method="POST">
+<form action="https://getform.io/f/c77b38b4-4e03-43c6-b90e-2d3187db2f94" method="POST" id="contact-form">
   <div>
     <label for="name">Name:</label>
     <input type="text" name="name" placeholder="Enter your name...">
@@ -24,4 +24,6 @@ Please use the following form if you would like to get in contact with me! (Note
   <button type="submit">Send</button>
 
 </form>
+
+<textarea name="message" form="contact-form">Enter your message...</textarea>
         
